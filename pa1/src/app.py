@@ -160,31 +160,12 @@ def edit_comment(post_id, comment_id):
         return json.dumps({"err": "Comment section not found"}), 404
     if not comment_id in comments:
         return json.dumps({"err": "Comment not found"}), 404
-    '''
-    for x in comments:
-        if x["id"] == comment_id:
-            comment = x
-            break
-        else:
-            return json.dumps({"err": "Comment not found"}), 404
-    '''
 
     body = json.loads(request.data)
 
     text = body.get("text")
 
     comments[comment_id]["text"] = text
-    '''
-    upvotes = comment["upvotes"]
-    username = comment["username"]
-
-    res = {
-        "id": comment_id,
-        "upvotes": upvotes,
-        "text": text,
-        "username": username,
-    }
-    '''
 
     return json.dumps(comments[comment_id]), 200
 
